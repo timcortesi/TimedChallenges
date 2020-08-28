@@ -29,7 +29,7 @@ main:
 
     {{>_modal}}
 
-    <center><video style="{{#mode!=='timer'}}display:none;{{/}}max-width:100%;max-height:300px;" id="scanner-preview"></video></center>
+    <center><video style="{{#mode!=='timer'}}display:none;{{/}}max-width:100%;max-height:400px;" id="scanner-preview"></video></center>
 `,
 welcome:
 `
