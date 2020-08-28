@@ -44,7 +44,6 @@ var main = function() {
         app.data.mode = 'timer';
         app.update();
         app.qrScanner.start();
-        clearTimeout(app.timeout_timer);
         app.timeout_timer = setTimeout(function(){ 
             if (typeof app.data.config.penalties[app.data.penalty] !== 'undefined') {
                 app.data.current_penalty = app.data.config.penalties[app.data.penalty];
@@ -58,7 +57,6 @@ var main = function() {
         }, app.data.current_clue.seconds*1000);
         app.data.seconds_left = app.data.current_clue.seconds;
         app.update();
-        clearInterval(app.interval)
         app.interval = setInterval(function() {
             app.data.seconds_left--;
             app.update()
@@ -84,6 +82,7 @@ var next = function() {
 var init_scanner = function() {
     app.qrScanner = new QrScanner(document.getElementById('scanner-preview'), function(result){
         clearTimeout(app.timeout_timer);
+        clearInterval(app.interval);
         app.data.scan = result;
         if (app.data.scan == app.data.current_clue.answer) {
             app.data.mode = 'correct';
