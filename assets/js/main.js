@@ -3,9 +3,21 @@ app.data.clue = -1;
 app.data.current_clue = app.data.config.clues[app.data.clue];
 
 var main = function() {
-    var result = window.prompt('Enter Config')
-    if (result !== '') {
-        app.data.config = JSON.parse(result)
+    var config_json = '';
+    if (window.location.hash !== '') {
+        config_json = decodeURI(decodeURI(window.location.hash.substr(1)));
+    } else {
+        var prompt_info = window.prompt('Enter Config')
+        if (prompt_info !== null) {
+            config_json = prompt_info
+        }
+    }
+    if (config_json != '') {
+        app.data.config = JSON.parse(config_json)
+        debugger;
+        localStorage.setItem("config",config_json)
+    } else if (localStorage.getItem("config") !== null) {
+        app.data.config = JSON.parse(localStorage.getItem("config"))
     }
     // Start Here
     app.data.mode = 'welcome';
