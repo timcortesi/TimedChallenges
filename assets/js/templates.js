@@ -26,7 +26,7 @@ main:
 
     {{>_modal}}
 
-    <video style="{{#mode!=='timer'}}display:none;{{/}}width:100%;height:300px;" id="scanner-preview"></video>
+    <center><video style="{{#mode!=='timer'}}display:none;{{/}}max-width:100%;max-height:300px;" id="scanner-preview"></video></center>
 `,
 welcome:
 `
