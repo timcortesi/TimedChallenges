@@ -30,7 +30,7 @@ var main = function() {
     app.click('#start-timer-btn',function() {
         app.data.mode = 'timer';
         app.update();
-        app.qrScanner.start();
+        // app.qrScanner.start();
         app.timeout_timer = setTimeout(function(){ 
             if (typeof app.data.config.penalties[app.data.penalty] !== 'undefined') {
                 app.data.current_penalty = app.data.config.penalties[app.data.penalty];
@@ -40,7 +40,7 @@ var main = function() {
             app.data.penalty++;
             app.data.mode = 'timeout';
             app.update();
-            app.qrScanner.stop();
+            // app.qrScanner.stop();
         }, app.data.current_clue.seconds*1000);
         app.data.seconds_left = app.data.current_clue.seconds;
         app.update();
@@ -78,8 +78,9 @@ var init_scanner = function() {
             app.data.penalty++;
         }
         app.update();
-        app.qrScanner.stop();
+        // app.qrScanner.stop();
     });
 }
 
 init_scanner();
+app.qrScanner.start();
