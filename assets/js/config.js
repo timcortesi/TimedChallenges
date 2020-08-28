@@ -2,6 +2,7 @@ app.data.config = {
     "overview": "<p>Welcome!</p>",
     "complete": "<p>Congrats!",
     "quit": "The End",
+    "clue": "Get ready for the next clue",
     "clues": [
         {
             "clue":"This is the first clue",

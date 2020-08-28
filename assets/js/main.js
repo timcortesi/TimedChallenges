@@ -88,7 +88,11 @@ var init_scanner = function() {
             app.data.mode = 'correct';
         } else {
             app.data.mode = 'incorrect';
-            app.data.current_penalty = app.data.config.penalties[app.data.penalty];
+            if (typeof app.data.config.penalties[app.data.penalty] !== 'undefined') {
+                app.data.current_penalty = app.data.config.penalties[app.data.penalty];
+            } else {
+                app.data.current_penalty = app.data.config.penalties_exceeded;
+            }
             app.data.penalty++;
         }
         app.update();
