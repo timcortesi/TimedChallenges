@@ -14,7 +14,6 @@ var main = function() {
     }
     if (config_json != '') {
         app.data.config = JSON.parse(config_json)
-        debugger;
         localStorage.setItem("config",config_json)
     } else if (localStorage.getItem("config") !== null) {
         app.data.config = JSON.parse(localStorage.getItem("config"))
