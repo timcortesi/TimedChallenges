@@ -1,6 +1,8 @@
 app.data.penalty = 0;
 app.data.clue = -1;
 app.data.current_clue = app.data.config.clues[app.data.clue];
+app.interval = 0;
+app.timeout_timer = 0;
 
 var main = function() {
     var config_json = '';
@@ -42,6 +44,7 @@ var main = function() {
         app.data.mode = 'timer';
         app.update();
         app.qrScanner.start();
+        clearTimeout(app.timeout_timer);
         app.timeout_timer = setTimeout(function(){ 
             if (typeof app.data.config.penalties[app.data.penalty] !== 'undefined') {
                 app.data.current_penalty = app.data.config.penalties[app.data.penalty];
@@ -55,6 +58,7 @@ var main = function() {
         }, app.data.current_clue.seconds*1000);
         app.data.seconds_left = app.data.current_clue.seconds;
         app.update();
+        clearInterval(app.interval)
         app.interval = setInterval(function() {
             app.data.seconds_left--;
             app.update()
