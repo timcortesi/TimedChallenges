@@ -50,17 +50,22 @@ clue:
             <h3 class="panel-title">{{#config.headers.clue}}{{config.headers.clue}}{{/}}{{^config.headers.clue}}Clue{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{{current_clue.clue}}}</p>
+        {{#config.clue}}{{config.clue}}{{/}}{{^config.clue}}Get ready for the next clue{{/}}  
             <div class="btn btn-primary pull-right" id="start-timer-btn">{{#config.buttons.start}}{{config.buttons.start}}{{/}}{{^config.buttons.start}}Start{{/}}</div>
         </div>
         <div class="panel-footer">
-            <div class="badge">You have {{current_clue.seconds}} seconds</div>
+            <div class="badge">You will have {{current_clue.seconds}} seconds for the next assignment</div>
         </div>
     </div>
 `,
 timer:
 `
     <center><h1>You have {{seconds_left}} seconds left!</h1></center>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{{current_clue.clue}}}
+        </div>
+    </div>
 `,
 timeout:
 `
