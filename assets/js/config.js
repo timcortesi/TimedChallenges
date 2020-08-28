@@ -1,27 +1,31 @@
 app.data.config = {
-    "user": "Stacy",
-    "overview": "You are a secret agent!",
+    "overview": "<p>Welcome!</p>",
+    "complete": "<p>Congrats!",
+    "quit": "The End",
     "clues": [
         {
-            "clue":"The first clue",
+            "clue":"This is the first clue",
             "seconds":10,
-            "timeout":"You lose!",
-            "answer":"This is the correct answer",
-            "correct":"This is the success message",
-            "incorrect":"You got it wrong!"
+            "timeout":"You ran out of time!",
+            "answer":"apple",
+            "correct":"You got it right",
+            "incorrect":"you got it worng"
         },
-        {
-            "clue":"Here is the next clue",
-            "seconds":10,
-            "timeout":"You didn't make it!",
-            "answer":"This is the correct answer",
-            "correct":"This is the success message",
-            "incorrect":"You got it wrong!"
-        }
     ],
     "penalties": [
-        "This is the first one",
-        "This is the second one",
-        "This is the third one"
-    ]
+        "This is the first penalty",
+    ],
+    "penalties_exceeded" : "No more penalties",
+    "headers": {
+        "welcome":"Welcome",
+        "clue":"Clue",
+        "timeout":"Timeout",
+        "correct":"Correct",
+        "incorrect":"Incorrect"
+    },
+    "buttons": {
+        "start":"Start",
+        "begin":"Begin",
+        "quit":"Quit"
+    }
 }

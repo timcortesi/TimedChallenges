@@ -19,8 +19,11 @@ main:
     {{#mode === 'incorrect'}}
         {{>incorrect}}
     {{/}}
-    {{#mode === 'over'}}
-        {{>over}}
+    {{#mode === 'penalty'}}
+        {{>penalty}}
+    {{/}}
+    {{#mode === 'complete'}}
+        {{>complete}}
     {{/}}
 
 
@@ -32,11 +35,11 @@ welcome:
 `
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Welcome {{config.user}}</h3>
+            <h3 class="panel-title">{{#config.headers.welcome}}{{config.headers.welcome}}{{/}}{{^config.headers.welcome}}Welcome{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{config.overview}}</p>
-            <div class="btn btn-primary pull-right" id="begin-btn">Begin</div>
+            <p>{{{config.overview}}}</p>
+            <div class="btn btn-primary pull-right" id="begin-btn">{{#config.buttons.begin}}{{config.buttons.begin}}{{/}}{{^config.buttons.begin}}Begin{{/}}</div>
         </div>
     </div>
 `,
@@ -44,11 +47,11 @@ clue:
 `
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Clue</h3>
+            <h3 class="panel-title">{{#config.headers.clue}}{{config.headers.clue}}{{/}}{{^config.headers.clue}}Clue{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{current_clue.clue}}</p>
-            <div class="btn btn-primary pull-right" id="start-timer-btn">Start</div>
+            <p>{{{current_clue.clue}}}</p>
+            <div class="btn btn-primary pull-right" id="start-timer-btn">{{#config.buttons.start}}{{config.buttons.start}}{{/}}{{^config.buttons.start}}Start{{/}}</div>
         </div>
         <div class="panel-footer">
             <div class="badge">You have {{current_clue.seconds}} seconds</div>
@@ -63,13 +66,12 @@ timeout:
 `
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Out of Time</h3>
+            <h3 class="panel-title">{{#config.headers.timeout}}{{config.headers.timeout}}{{/}}{{^config.headers.timeout}}Out of Time{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{current_clue.timeout}}</p>
-            <p>{{current_penalty}}</p>
-            <div class="btn btn-danger" id="over-btn">Quit</div>
-            <div class="btn btn-primary pull-right" id="begin-btn">Next</div>
+            <p>{{{current_clue.timeout}}}</p>
+            <div class="btn btn-danger" id="over-btn">{{#config.buttons.quit}}{{config.buttons.quit}}{{/}}{{^config.buttons.quit}}Quit{{/}}</div>
+            <div class="btn btn-primary pull-right" id="penalty-btn">Take Penalty</div>
         </div>
     </div>
 `,
@@ -77,11 +79,10 @@ correct:
 `
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Correct</h3>
+            <h3 class="panel-title">{{#config.headers.correct}}{{config.headers.correct}}{{/}}{{^config.headers.correct}}Correct{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{current_clue.correct}}</p>
-            <div class="btn btn-danger" id="over-btn">Quit</div>
+            <p>{{{current_clue.correct}}}</p>
             <div class="btn btn-primary pull-right" id="begin-btn">Next</div>
         </div>
     </div>
@@ -90,19 +91,37 @@ incorrect:
 `
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Incorrect</h3>
+            <h3 class="panel-title">{{#config.headers.incorrect}}{{config.headers.incorrect}}{{/}}{{^config.headers.incorrect}}Incorrect{{/}}</h3>
         </div>
         <div class="panel-body">
-            <p>{{current_clue.incorrect}}</p>
-            <p>{{current_penalty}}</p>
-            <div class="btn btn-danger" id="over-btn">Quit</div>
+            <p>{{{current_clue.incorrect}}}</p>
+            <div class="btn btn-danger" id="over-btn">{{#config.buttons.quit}}{{config.buttons.quit}}{{/}}{{^config.buttons.quit}}Quit{{/}}</div>
+            <div class="btn btn-primary pull-right" id="penalty-btn">Take Penalty</div>
+        </div>
+    </div>
+`,
+penalty:
+`
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{#config.headers.penalty}}{{config.headers.penalty}}{{/}}{{^config.headers.penalty}}Penalty{{/}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>{{{current_penalty}}}</p>
             <div class="btn btn-primary pull-right" id="begin-btn">Next</div>
         </div>
     </div>
 `,
-over:
+complete:
 `
-    It's over!
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{#config.headers.complete}}{{config.headers.complete}}{{/}}{{^config.headers.complete}}You Succeeded!{{/}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>{{{config.complete}}}</p>
+        </div>
+    </div>
 `,
 _modal:
 `

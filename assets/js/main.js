@@ -1,5 +1,5 @@
 app.data.penalty = 0;
-app.data.clue = 0;
+app.data.clue = -1;
 app.data.current_clue = app.data.config.clues[app.data.clue];
 
 var main = function() {
@@ -12,15 +12,19 @@ var main = function() {
     app.update();
 
     app.click('#begin-btn',function() {
+        next();
         if (app.data.over === true) {
-            app.data.mode = 'over';
+            app.data.mode = 'complete';
         } else {
             app.data.mode = 'clue';
         }
         app.update();
     })
     app.click('#over-btn',function() {
-        app.data.mode = 'over';
+        window.alert(app.data.config.quit)
+    })
+    app.click('#penalty-btn',function() {
+        app.data.mode = 'penalty';
         app.update();
     })
     app.click('#start-timer-btn',function() {
@@ -28,12 +32,15 @@ var main = function() {
         app.update();
         app.qrScanner.start();
         app.timeout_timer = setTimeout(function(){ 
-            app.data.current_penalty = app.data.config.penalties[app.data.penalty];
+            if (typeof app.data.config.penalties[app.data.penalty] !== 'undefined') {
+                app.data.current_penalty = app.data.config.penalties[app.data.penalty];
+            } else {
+                app.data.current_penalty = app.data.config.penalties_exceeded;
+            }
             app.data.penalty++;
             app.data.mode = 'timeout';
             app.update();
             app.qrScanner.stop();
-            next();
         }, app.data.current_clue.seconds*1000);
         app.data.seconds_left = app.data.current_clue.seconds;
         app.update();
@@ -72,7 +79,6 @@ var init_scanner = function() {
         }
         app.update();
         app.qrScanner.stop();
-        next();
     });
 }
 
